@@ -1,0 +1,14 @@
+echo "Produto","Quantidade","Preço" > final.csv 
+for arq in dados/* 
+do
+    awk -F, ' {
+        if(NR != 1) {
+            print $2 FS $3 FS $4
+        }
+    } ' $arq >> final.csv
+done
+
+sed 's/,/./g' recife-dados-despesas-2018.csv | 
+cut -d, -f1-39 > dados.csv
+
+

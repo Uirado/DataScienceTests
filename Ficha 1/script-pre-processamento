@@ -1,0 +1,14 @@
+awk -F ";" '{
+    if(NR == 1) {
+        print
+    } }' originais/recife-dados-despesas-2015.csv > pre-processado/recife.despesas.2015-2018.csv
+
+for arq in originais/* 
+do
+    awk -F ";" ' {
+        if(NR != 1) {
+            print
+        }
+    } ' $arq >> pre-processado/recife.despesas.2015-2018.csv
+done
+sed -i 's/,/./g' pre-processado/recife.despesas.2015-2018.csv
